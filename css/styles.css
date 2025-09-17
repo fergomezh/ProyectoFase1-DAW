@@ -1,0 +1,89 @@
+.login-body {
+  background-color: #f1ca67;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+}
+.content-body {
+  background: linear-gradient(to bottom, #ffffff, #fee6af);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+.navbar {
+  background-color: hsl(48, 100%, 50%);
+}
+.navbar-brand img {
+  height: 80px;
+}
+.navbar-nav .nav-link {
+  font-size: 1.2rem;
+  color: white;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+.navbar-nav .nav-link:hover {
+  color: hsl(48, 100%, 40%);
+  text-decoration: underline;
+}
+.navbar-dark .navbar-nav .nav-item.active .nav-link {
+  color: black !important;
+}
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.9);
+  transition: box-shadow 0.3s ease;
+}
+.card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+.btn-primary {
+  background-color: #007bff;
+}
+.btn-success {
+  background-color: #28a745;
+}
+.btn-warning {
+  background-color: #ffc107;
+}
+.login-container {
+  max-width: 400px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.logo {
+  max-width: 250px;
+  margin: 0 auto 20px;
+  display: block;
+}
+.table {
+  background-color: transparent;
+}
+.graph-placeholder {
+  height: 400px;
+  background-color: rgba(233, 236, 239, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  border: 1px solid #dee2e6;
+}
+.login-box {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  width: 350px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+.form-control {
+  text-align: center;
+  font-size: 20px;
+  letter-spacing: 5px;
+}

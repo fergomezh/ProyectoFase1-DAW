@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokémon Bank - Historial de Transacciones</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="content-body">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="https://i.ibb.co/xKN5K2Px/pokemon-bank.gif" alt="Logo" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard.html">Dashboard</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="history.html">Historial</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="graph.html">Gráfico</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">Salir</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-4 flex-grow-1">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+              <h3>Historial de Transacciones</h3>
+            </div>
+            <div class="card-body">
+              <p>Usuario: Usuario de Prueba | Cuenta: 1234-5678-9012</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-striped table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th>Tipo</th>
+                <th>Monto</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Depósito</td>
+                <td>$500.00</td>
+                <td>2025-09-01</td>
+              </tr>
+              <tr>
+                <td>Depósito</td>
+                <td>$300.00</td>
+                <td>2025-09-05</td>
+              </tr>
+              <tr>
+                <td>Depósito</td>
+                <td>$200.00</td>
+                <td>2025-09-10</td>
+              </tr>
+              <tr>
+                <td>Retiro</td>
+                <td>$200.00</td>
+                <td>2025-09-02</td>
+              </tr>
+              <tr>
+                <td>Retiro</td>
+                <td>$150.00</td>
+                <td>2025-09-08</td>
+              </tr>
+              <tr>
+                <td>Pago de Servicio (Energía)</td>
+                <td>$50.00</td>
+                <td>2025-09-03</td>
+              </tr>
+              <tr>
+                <td>Pago de Servicio (Internet)</td>
+                <td>$60.00</td>
+                <td>2025-09-06</td>
+              </tr>
+              <tr>
+                <td>Pago de Servicio (Telefonía)</td>
+                <td>$45.00</td>
+                <td>2025-09-09</td>
+              </tr>
+              <tr>
+                <td>Pago de Servicio (Agua Potable)</td>
+                <td>$70.00</td>
+                <td>2025-09-11</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

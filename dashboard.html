@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokémon Bank - Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="content-body">
+    <nav class="navbar navbar-expand-lg navbar-secondary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="https://i.ibb.co/xKN5K2Px/pokemon-bank.gif" alt="Logo" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="dashboard.html">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="history.html">Historial</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="graph.html">Gráfico</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">Salir</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page-body">
+      <div class="container-fluid mt-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h3 class="card-title">Bienvenido, Usuario de Prueba</h3>
+                <p>Número de Cuenta: 1234-5678-9012</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Consulta de Saldo -->
+          <div class="col-md-12 mb-4">
+            <div class="card">
+              <div class="card-header bg-info text-white">
+                <h4>Consulta de Saldo</h4>
+              </div>
+              <div class="card-body">
+                <p id="balance-display" data-balance="1000.00">
+                  Saldo Actual: $1,000.00
+                </p>
+                <!--Cambie formato de saldo, para darle formato y poder validar-->
+              </div>
+            </div>
+          </div>
+
+          <!-- Depósito -->
+          <div class="col-md-6 mb-4">
+            <div class="card">
+              <div class="card-header bg-success text-white">
+                <h4>Depósito</h4>
+              </div>
+              <div class="card-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="deposit-amount" class="form-label"
+                      >Monto a Depositar</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="deposit-amount"
+                      min="0"
+                      step="0.01"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-success">
+                    Depositar
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Retiro -->
+          <div class="col-md-6 mb-4">
+            <div class="card">
+              <div class="card-header bg-warning text-dark">
+                <h4>Retiro</h4>
+              </div>
+              <div class="card-body">
+                <form id="withdraw-form" novalidate>
+                  <div class="mb-3">
+                    <label for="withdraw-amount" class="form-label"
+                      >Monto a Retirar</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="withdraw-amount"
+                      min="0"
+                      step="0.01"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-warning">Retirar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pago de Servicios -->
+          <div class="col-md-12 mb-4">
+            <div class="card">
+              <div class="card-header bg-primary text-white">
+                <h4>Pago de Servicios</h4>
+              </div>
+              <div class="card-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="service-type" class="form-label"
+                      >Tipo de Servicio</label
+                    >
+                    <select class="form-select" id="service-type" required>
+                      <option value="">Seleccione un servicio</option>
+                      <option value="energia">Energía Eléctrica</option>
+                      <option value="internet">Internet</option>
+                      <option value="telefonia">Telefonía</option>
+                      <option value="agua">Agua Potable</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="payment-amount" class="form-label"
+                      >Monto a Pagar</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="payment-amount"
+                      min="0"
+                      step="0.01"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary">Pagar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/scripts.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
