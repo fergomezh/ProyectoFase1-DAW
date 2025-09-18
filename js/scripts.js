@@ -1,6 +1,6 @@
 function login() {
-  const user = document.getElementById("userInput").value.trim();
-  const pin = document.getElementById("pinInput").value.trim();
+  const user = document.getElementById("userInput")?.value.trim();
+  const pin = document.getElementById("pinInput")?.value.trim();
 
   // esto Compañeros solo es para demostrar al ing como fuciona.
   const validUser = "udb";
@@ -25,7 +25,7 @@ function login() {
   }
 }
 
-// esto compañeros es paraPermitir login con Enter
+// esto compañeros es para Permitir login con Enter
 document.addEventListener("keyup", function (e) {
   if (e.key === "Enter") login();
 });
@@ -35,15 +35,15 @@ const SUCCESS_IMAGE_URL = "https://i.ibb.co/fz9P1yCT/ICON-EXITOSO.jpg";
 
 document.addEventListener("DOMContentLoaded", () => {
   // Referencias DOM
-  const balanceEl = document.getElementById("balance-display"); //cantidad ingresada en saldo inicial
-  const withdrawForm = document.getElementById("withdraw-form"); //el formulario ip withdraw-form
-  const withdrawInput = document.getElementById("withdraw-amount"); //la cantidad ingresada en withdra-form
+  const balanceEl = document.getElementById("balance-display");
+  const withdrawForm = document.getElementById("withdraw-form");
+  const withdrawInput = document.getElementById("withdraw-amount");
 
   if (!balanceEl || !withdrawForm || !withdrawInput) {
     console.warn(
       "withdraw.js: elementos DOM faltantes. Verifica IDs: balance-display, withdraw-form, withdraw-amount"
-    ); //en caso de que el saldo incial o no existan el formulario genera una alerta
-    return; // no seguimos si faltan elementos
+    );
+    return;
   }
 
   // Parsear balance inicial desde data-balance (número en formato "1000.00", en caso no este declarado inicializa con "0"
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     balanceEl.textContent = `Saldo Actual: $${formatMoney(balance)}`;
   }
 
-  updateBalanceUI(); // sincroniza UI al inicio
+  updateBalanceUI(); //sincroniza UI al inicio
 
   // Manejo del submit-preventDefault no permite que se refresque la pagina
   withdrawForm.addEventListener("submit", function (e) {
@@ -175,74 +175,143 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
-});
 
-// Creacion de graficos con Chart.js
-const ctx = document.getElementById("transactionChart").getContext("2d");
-const transactionChart = new Chart(ctx, {
-  type: "doughnut",
-  data: {
-    labels: ["Depósito", "Retiro", "Pago de Servicios"],
-    datasets: [
-      {
-        label: "Número de Transacciones",
-        data: [3, 2, 4],
-        backgroundColor: [
-          "#28a745", // Verde para Depósito
-          "#ffc107", // Amarillo para Retiro
-          "#007bff", // Azul para Pago de Servicios
-        ],
-        borderWidth: 1,
-        borderColor: "#fff",
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Análisis de Tipos de Transacciones",
-      },
-    },
-  },
-});
+  // Deposito
+  const depositForm = document.getElementById("deposit-form");
+  if (depositForm) {
+    depositForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const amount = parseFloat(
+        document.getElementById("deposit-amount").value
+      );
+      if (isNaN(amount) || amount <= 0) {
+        swal({
+          title: "Monto inválido",
+          text: "Por favor ingrese un monto válido para depositar.",
+          icon: "warning",
+          button: "Aceptar",
+        });
+      } else {
+        balance = parseFloat((balance + amount).toFixed(2));
+        updateBalanceUI();
+        swal({
+          title: "¡Depósito exitoso!",
+          text: `Se han depositado $${amount.toFixed(2)} correctamente.`,
+          icon: "success",
+          button: "Aceptar",
+        });
+        depositForm.reset();
+      }
+    });
+  }
 
-const ctx2 = document.getElementById("servicePaymentChart").getContext("2d");
-const servicePaymentChart = new Chart(ctx2, {
-  type: "doughnut",
-  data: {
-    labels: ["Energía Eléctrica", "Internet", "Telefonía", "Agua Potable"],
-    datasets: [
-      {
-        label: "Número de Pagos de Servicios",
-        data: [1, 1, 1, 1],
-        backgroundColor: [
-          "#28a745", // Verde
-          "#ffc107", // Amarillo
-          "#007bff", // Azul
-          "#17a2b8", // Cyan
+  // Pago de Servicios
+  const serviceForm = document.getElementById("service-form");
+  if (serviceForm) {
+    serviceForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const serviceSelect = document.getElementById("service-type");
+      const service = serviceSelect.value;
+      const serviceText =
+        serviceSelect.options[serviceSelect.selectedIndex].text;
+      const amount = parseFloat(
+        document.getElementById("payment-amount").value
+      );
+      if (!service) {
+        swal({
+          title: "Servicio no seleccionado",
+          text: "Por favor seleccione un tipo de servicio.",
+          icon: "warning",
+          button: "Aceptar",
+        });
+      } else if (isNaN(amount) || amount <= 0) {
+        swal({
+          title: "Monto inválido",
+          text: "Por favor ingrese un monto válido para pagar.",
+          icon: "warning",
+          button: "Aceptar",
+        });
+      } else if (amount > balance) {
+        swal({
+          title: "Saldo insuficiente",
+          text: "No tiene suficiente saldo para realizar este pago.",
+          icon: "error",
+          button: "Aceptar",
+        });
+      } else {
+        balance = parseFloat((balance - amount).toFixed(2));
+        updateBalanceUI();
+        swal({
+          title: "¡Pago exitoso!",
+          text: `Se ha pagado $${amount.toFixed(
+            2
+          )} en el servicio de ${serviceText}.`,
+          icon: "success",
+          button: "Aceptar",
+        });
+        serviceForm.reset();
+      }
+    });
+  }
+
+  // Creacion de graficos con Chart.js
+  const ctx = document.getElementById("transactionChart")?.getContext("2d");
+  if (ctx) {
+    new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: ["Depósito", "Retiro", "Pago de Servicios"],
+        datasets: [
+          {
+            label: "Número de Transacciones",
+            data: [3, 2, 4],
+            backgroundColor: ["#28a745", "#ffc107", "#007bff"],
+            borderWidth: 1,
+            borderColor: "#fff",
+          },
         ],
-        borderWidth: 1,
-        borderColor: "#fff",
       },
-    ],
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: "top",
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: "top" },
+          title: {
+            display: true,
+            text: "Análisis de Tipos de Transacciones",
+          },
+        },
       },
-      title: {
-        display: true,
-        text: "Análisis de Tipos de Pagos de Servicios",
+    });
+  }
+
+  const ctx2 = document.getElementById("servicePaymentChart")?.getContext("2d");
+  if (ctx2) {
+    new Chart(ctx2, {
+      type: "doughnut",
+      data: {
+        labels: ["Energía Eléctrica", "Internet", "Telefonía", "Agua Potable"],
+        datasets: [
+          {
+            label: "Número de Pagos de Servicios",
+            data: [1, 1, 1, 1],
+            backgroundColor: ["#28a745", "#ffc107", "#007bff", "#17a2b8"],
+            borderWidth: 1,
+            borderColor: "#fff",
+          },
+        ],
       },
-    },
-  },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: "top" },
+          title: {
+            display: true,
+            text: "Análisis de Tipos de Pagos de Servicios",
+          },
+        },
+      },
+    });
+  }
 });
